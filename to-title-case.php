@@ -4,7 +4,7 @@ Plugin Name: To Title Case
 Plugin URL: http://ryanmccue.info/projects/wordpress/to-title-case/
 Description: Automatically converts post titles on-the-fly, using <a href="http://camendesign.com/code/title-case">Kroc Camen's port</a> of John Gruber's title case.
 Version: 1.0
-Author: <a href="http://ryanmccue.info/">Ryan McCue</a> - Title Case by <a href="http://camendesign.com/">Kroc Camen</a>
+Author: Ryan McCue, Title Case by Kroc Camen
 */
 
 /*
