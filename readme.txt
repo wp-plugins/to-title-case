@@ -47,5 +47,8 @@ itself, contact [Kroc Camen](http://camendesign.com/).
 
 == Changelog ==
 
+= 1.0.1 =
+Kroc: Add `\p{L}` to get accented letters working.
+
 = 1.0 =
 * Original version.
