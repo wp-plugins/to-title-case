@@ -47,6 +47,9 @@ itself, contact [Kroc Camen](http://camendesign.com/).
 
 == Changelog ==
 
+= 1.0.2
+Ryan: Use Unicode characters correctly.
+
 = 1.0.1 =
 Kroc: Add `\p{L}` to get accented letters working.
 

@@ -3,7 +3,7 @@
 Plugin Name: To Title Case
 Plugin URL: http://ryanmccue.info/projects/wordpress/to-title-case/
 Description: Automatically converts post titles on-the-fly, using <a href="http://camendesign.com/code/title-case">Kroc Camen's port</a> of John Gruber's title case.
-Version: 1.0.1
+Version: 1.0.2
 Author: Ryan McCue
 Author URI: http://ryanmccue.info/
 */
@@ -22,7 +22,7 @@ function titleCase ($title) {
 	$title = preg_replace ($regx, '', $title);
 	
 	//find each word (including punctuation attached)
-	preg_match_all ('/[\w\p{L}&`\'?"?.@:\/\{\(\[<>_]+-? */u', $title, $m1, PREG_OFFSET_CAPTURE);
+	preg_match_all ('/[\w\p{L}&`\'‘’"“\.@:\/\{\(\[<>_]+-? */u', $title, $m1, PREG_OFFSET_CAPTURE);
 	foreach ($m1[0] as &$m2) {
 		//shorthand these- "match" and "index"
 		list ($m, $i) = $m2;
@@ -31,14 +31,15 @@ function titleCase ($title) {
 		//we fix this by recounting the text before the offset using multi-byte aware `strlen`
 		$i = mb_strlen (substr ($title, 0, $i), 'UTF-8');
 		
-		//find words that should always be lowercase?		//(never on the first word, and never if preceded by a colon)
+		//find words that should always be lowercase…
+		//(never on the first word, and never if preceded by a colon)
 		$m = $i>0 && mb_substr ($title, max (0, $i-2), 1, 'UTF-8') !== ':' && preg_match (
 			'/^(a(nd?|s|t)?|b(ut|y)|en|for|i[fn]|o[fnr]|t(he|o)|vs?\.?|via)[ \-]/i', $m
-		) ?	//ond convert them to lowercase
+		) ?	//…and convert them to lowercase
 			mb_strtolower ($m, 'UTF-8')
 			
 		//else:	brackets and other wrappers
-		: (	preg_match ('/[\'"_{(\[?]/u', mb_substr ($title, max (0, $i-1), 3, 'UTF-8'))
+		: (	preg_match ('/[\'"_{(\[‘“]/u', mb_substr ($title, max (0, $i-1), 3, 'UTF-8'))
 		?	//convert first letter within wrapper to uppercase
 			mb_substr ($m, 0, 1, 'UTF-8').
 			mb_strtoupper (mb_substr ($m, 1, 1, 'UTF-8'), 'UTF-8').
